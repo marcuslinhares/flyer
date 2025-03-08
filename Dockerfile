@@ -12,8 +12,11 @@ RUN wget -O pocketbase.zip https://github.com/pocketbase/pocketbase/releases/dow
     rm pocketbase.zip && \
     chmod +x /app/pocketbase
 
+# Criar um diretório para os dados persistentes
+RUN mkdir /app/data
+
 # Expor a porta padrão do PocketBase (8090)
 EXPOSE 8090
 
-# Rodar o PocketBase
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090"]
+# Rodar o PocketBase, apontando para o diretório de dados
+CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090", "--data-dir=/app/data"]
