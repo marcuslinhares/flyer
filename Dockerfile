@@ -19,4 +19,4 @@ RUN mkdir /app/data
 EXPOSE 8090
 
 # Rodar o PocketBase, apontando para o diretório de dados
-CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090", "--data-dir=/app/data"]
+CMD ["./pocketbase", "serve", "--http=0.0.0.0:8090"]
