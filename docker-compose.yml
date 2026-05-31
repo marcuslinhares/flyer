@@ -1,11 +1,19 @@
 version: '3.8'
 
 services:
-  pocketbase:
+  api:
     build: .
-    container_name: flyer
+    container_name: flyer-api
     ports:
+      - "8080:8080"
       - "8090:8090"
     volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
       - ./pb_data:/app/pb_data
-    restart: "yes"
+    environment:
+      - DB_PATH=/app/data/flyer.db
+      - UPLOAD_DIR=/app/uploads
+      - PORT=8080
+      - FLYER_API_KEY=${FLYER_API_KEY:-}
+    restart: unless-stopped
